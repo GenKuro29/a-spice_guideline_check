@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// index:プロジェクトの一覧
+// show:プロジェクトの詳細情報
+// store:プロジェクトのレコード作成
+// update:プロジェクト情報の更新
+// create:新規作成時の登録フォームページ
+Route::resource('projects', 'ProjectsController', ['only' => ['index', 'show', 'update', 'store', 'create']]);
+

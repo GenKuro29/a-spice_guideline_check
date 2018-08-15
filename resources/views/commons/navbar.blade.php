@@ -12,8 +12,8 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">プロジェクト登録</a></li>
-                    <li><a href="#">プロジェクト一覧</a></li>
+                    <li>{!! link_to_route('projects.create', 'プロジェクト登録') !!}</li>
+                    <li>{!! link_to_route('projects.index', 'プロジェクト一覧') !!}</li>
                     <li><a href="#">参考：ガイドライン</a></li>
                 </ul>
             </div>

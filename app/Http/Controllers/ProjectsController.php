@@ -138,16 +138,20 @@ class ProjectsController extends Controller
         // MAN.3の結果を更新
         $process_results = Process_result::where('project_id', $id)->where('process_area_name', 'MAN.3')->first();
         $process_results->process_result = $request->MAN3_process_result;
+        $process_results->process_comment = $request->MAN3_process_comment;
         $process_results->save();
 
         // SWE.1の結果を更新        
         $process_results = Process_result::where('project_id', $id)->where('process_area_name', 'SWE.1')->first();
         $process_results->process_result = $request->SWE1_process_result;
+        $process_results->process_comment = $request->SWE1_process_comment;
         $process_results->save();
         
         // SWE.6の結果を更新        
         $process_results = Process_result::where('project_id', $id)->where('process_area_name', 'SWE.6')->first();
         $process_results->process_result = $request->SWE6_process_result;
+        $process_results->process_comment = $request->SWE6_process_comment;
+        
         $process_results->save();
         
         return redirect('/projects');

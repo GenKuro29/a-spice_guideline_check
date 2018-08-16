@@ -50,6 +50,10 @@
                         {!! Form::label('process_results', 'SWE.1評定') !!}
                         {!! Form::text('SWE1_process_result', $process_results->where('process_area_name', 'SWE.1')->first()->process_result, ['class' => 'form-control']) !!}
                     </div>
+                    <div class="form-group">
+                        {!! Form::label('process_results', 'SWE.6評定') !!}
+                        {!! Form::text('SWE6_process_result', $process_results->where('process_area_name', 'SWE.6')->first()->process_result, ['class' => 'form-control']) !!}
+                    </div>
 
                 {!! Form::submit('更新',['class' => 'btn btn-default']) !!}
 

@@ -57,6 +57,26 @@ class ProjectsController extends Controller
         $project->assessor = $request->assessor;
         $project->interviewed_person = $request->interviewed_person;
         $project->save();
+
+        //プロジェクトに必ず紐づく子テーブル(process_results)のレコードを作成する        
+        //MAN.3
+        $process_result = new Process_result;
+        $process_result->project_id = $project->id;
+        $process_result->process_area_name = 'MAN.3';
+        $process_result->save();
+        
+        //SWE.1
+        $process_result = new Process_result;
+        $process_result->project_id = $project->id;
+        $process_result->process_area_name = 'SWE.1';
+        $process_result->save();
+        
+        //SWE.6
+        $process_result = new Process_result;
+        $process_result->project_id = $project->id;
+        $process_result->process_area_name = 'SWE.6';
+        $process_result->save();
+        
         return redirect('/projects');
     }
 
@@ -125,7 +145,10 @@ class ProjectsController extends Controller
         $process_results->process_result = $request->SWE1_process_result;
         $process_results->save();
         
-
+        // SWE.6の結果を更新        
+        $process_results = Process_result::where('project_id', $id)->where('process_area_name', 'SWE.6')->first();
+        $process_results->process_result = $request->SWE6_process_result;
+        $process_results->save();
         
         return redirect('/projects');
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Project;
 use App\Process_result;
+use App\Bp_result;
 
 class ProjectsController extends Controller
 {
@@ -47,6 +48,7 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
+        //テーブル"projects"にデータを保存
         $project = new Project;
         $project->prj_name = $request->prj_name;
         $project->prj_purpose = $request->prj_purpose;
@@ -65,17 +67,41 @@ class ProjectsController extends Controller
         $process_result->process_area_name = 'MAN.3';
         $process_result->save();
         
+        //テーブル(process_results)に必ず紐づく子テーブル(bp_results)のレコードを作成する
+        for ($i=1; $i <11; $i++){
+            $bp_result = new Bp_result;
+            $bp_result->process_id = $process_result->id;
+            $bp_result->bp_number = 'BP'. $i;
+            $bp_result->save();
+        }
+        
         //SWE.1
         $process_result = new Process_result;
         $process_result->project_id = $project->id;
         $process_result->process_area_name = 'SWE.1';
         $process_result->save();
         
+        //テーブル(process_results)に必ず紐づく子テーブル(bp_results)のレコードを作成する
+        for ($i=1; $i <9; $i++){
+            $bp_result = new Bp_result;
+            $bp_result->process_id = $process_result->id;
+            $bp_result->bp_number = 'BP'. $i;
+            $bp_result->save();
+        }
+        
         //SWE.6
         $process_result = new Process_result;
         $process_result->project_id = $project->id;
         $process_result->process_area_name = 'SWE.6';
         $process_result->save();
+        
+        //テーブル(process_results)に必ず紐づく子テーブル(bp_results)のレコードを作成する
+        for ($i=1; $i <8; $i++){
+            $bp_result = new Bp_result;
+            $bp_result->process_id = $process_result->id;
+            $bp_result->bp_number = 'BP'. $i;
+            $bp_result->save();
+        }
         
         return redirect('/projects');
     }
@@ -90,10 +116,22 @@ class ProjectsController extends Controller
     {
         $project = Project::find($id);
         $process_results = Process_result::where('project_id', $id)->get();
+        $man3_process_id = $process_results->where('process_area_name','MAN.3')->first()->id;
+        $swe1_process_id = $process_results->where('process_area_name','SWE.1')->first()->id;
+        $swe6_process_id = $process_results->where('process_area_name','SWE.6')->first()->id;
+        $man3_bp_results = Bp_result::where('process_id',$man3_process_id)->get();
+        $swe1_bp_results = Bp_result::where('process_id',$swe1_process_id)->get();
+        $swe6_bp_results = Bp_result::where('process_id',$swe6_process_id)->get();
         
         return view('projects.show', [
             'project' => $project,
             'process_results' => $process_results,
+            'man3_bp_results' => $man3_bp_results,
+            'swe1_bp_results' => $swe1_bp_results,
+            'swe6_bp_results' => $swe6_bp_results,
+            'man3_process_id' => $man3_process_id,
+            'swe1_process_id' => $swe1_process_id,
+            'swe6_process_id' => $swe6_process_id,
         ]);
     }
 
@@ -140,6 +178,16 @@ class ProjectsController extends Controller
         $process_results->process_result = $request->MAN3_process_result;
         $process_results->process_comment = $request->MAN3_process_comment;
         $process_results->save();
+        
+        
+        //各BPのデータを更新
+        $man3_process_id = $process_results->id;
+        for ($i=1; $i <11; $i++)
+        {
+            $bp_results = Bp_result::where('process_id', $man3_process_id)->where('bp_number','BP' . $i)->first();
+            $bp_results->bp_result = $request->man3_bp_result[$i-1];
+            $bp_results->save();
+        }
 
         // SWE.1の結果を更新        
         $process_results = Process_result::where('project_id', $id)->where('process_area_name', 'SWE.1')->first();
@@ -147,12 +195,29 @@ class ProjectsController extends Controller
         $process_results->process_comment = $request->SWE1_process_comment;
         $process_results->save();
         
+        //各BPのデータを更新
+        $swe1_process_id = $process_results->id;
+        for ($i=1; $i <9; $i++)
+        {
+            $bp_results = Bp_result::where('process_id', $swe1_process_id)->where('bp_number','BP' . $i)->first();
+            $bp_results->bp_result = $request->swe1_bp_result[$i-1];
+            $bp_results->save();
+        }
+        
         // SWE.6の結果を更新        
         $process_results = Process_result::where('project_id', $id)->where('process_area_name', 'SWE.6')->first();
         $process_results->process_result = $request->SWE6_process_result;
         $process_results->process_comment = $request->SWE6_process_comment;
-        
         $process_results->save();
+        
+        //各BPのデータを更新
+        $swe6_process_id = $process_results->id;
+        for ($i=1; $i <8; $i++)
+        {
+            $bp_results = Bp_result::where('process_id', $swe6_process_id)->where('bp_number','BP' . $i)->first();
+            $bp_results->bp_result = $request->swe6_bp_result[$i-1];
+            $bp_results->save();
+        }
         
         return redirect('/projects');
     }

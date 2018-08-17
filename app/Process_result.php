@@ -13,8 +13,8 @@ class Process_result extends Model
         'process_comment',
     ];
     
-    public function project()
-    {
-        return $this->belongsTo(Project::class);
-    }
+    public function bp_results()
+        {
+            return $this->hasMany(Bp_result::class, 'process_id');
+        }
 }

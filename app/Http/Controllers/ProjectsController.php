@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\Process_result;
 use App\Bp_result;
+use App\Evidence;
 
 class ProjectsController extends Controller
 {
@@ -73,6 +74,13 @@ class ProjectsController extends Controller
             $bp_result->process_id = $process_result->id;
             $bp_result->bp_number = 'BP'. $i;
             $bp_result->save();
+            
+            //テーブル(bp_results)に必ず紐づく子テーブル(evidences)のレコードを2つ作成
+            for ($j=0; $j<2; $j++){
+                $evidence = new Evidence;
+                $evidence->bp_id = $bp_result->id;
+                $evidence->save();
+            }
         }
         
         //SWE.1
@@ -87,6 +95,13 @@ class ProjectsController extends Controller
             $bp_result->process_id = $process_result->id;
             $bp_result->bp_number = 'BP'. $i;
             $bp_result->save();
+            
+            //テーブル(bp_results)に必ず紐づく子テーブル(evidences)のレコードを2つ作成
+            for ($j=0; $j<2; $j++){
+                $evidence = new Evidence;
+                $evidence->bp_id = $bp_result->id;
+                $evidence->save();
+            }
         }
         
         //SWE.6
@@ -101,6 +116,13 @@ class ProjectsController extends Controller
             $bp_result->process_id = $process_result->id;
             $bp_result->bp_number = 'BP'. $i;
             $bp_result->save();
+            
+            //テーブル(bp_results)に必ず紐づく子テーブル(evidences)のレコードを2つ作成
+            for ($j=0; $j<2; $j++){
+                $evidence = new Evidence;
+                $evidence->bp_id = $bp_result->id;
+                $evidence->save();
+            }
         }
         
         return redirect('/projects');
@@ -115,23 +137,11 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project = Project::find($id);
-        $process_results = Process_result::where('project_id', $id)->get();
-        $man3_process_id = $process_results->where('process_area_name','MAN.3')->first()->id;
-        $swe1_process_id = $process_results->where('process_area_name','SWE.1')->first()->id;
-        $swe6_process_id = $process_results->where('process_area_name','SWE.6')->first()->id;
-        $man3_bp_results = Bp_result::where('process_id',$man3_process_id)->get();
-        $swe1_bp_results = Bp_result::where('process_id',$swe1_process_id)->get();
-        $swe6_bp_results = Bp_result::where('process_id',$swe6_process_id)->get();
+        $process_results = $project->process_results()->get();
         
         return view('projects.show', [
             'project' => $project,
             'process_results' => $process_results,
-            'man3_bp_results' => $man3_bp_results,
-            'swe1_bp_results' => $swe1_bp_results,
-            'swe6_bp_results' => $swe6_bp_results,
-            'man3_process_id' => $man3_process_id,
-            'swe1_process_id' => $swe1_process_id,
-            'swe6_process_id' => $swe6_process_id,
         ]);
     }
 
@@ -182,11 +192,24 @@ class ProjectsController extends Controller
         
         //各BPのデータを更新
         $man3_process_id = $process_results->id;
+        $j=0;
         for ($i=1; $i <11; $i++)
         {
             $bp_results = Bp_result::where('process_id', $man3_process_id)->where('bp_number','BP' . $i)->first();
             $bp_results->bp_result = $request->man3_bp_result[$i-1];
             $bp_results->save();
+            
+            //エビデンスの情報を更新(2つ固定)
+            $evidence = $bp_results->evidence()->get();
+            foreach ($evidence as $a_evidence)
+            {
+                $a_evidence->evidence_type = $request->evidence_type[$j];
+                $a_evidence->evidence_comment = $request->evidence_comment[$j];
+                $a_evidence->evidence_document = $request->evidence_document[$j];
+                $a_evidence->save();
+                $j++;
+            }
+            
         }
 
         // SWE.1の結果を更新        

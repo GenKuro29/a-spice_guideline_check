@@ -17,5 +17,9 @@ class Project extends Model
         'interviewed_person',
     ];
     
+    public function process_results()
+        {
+            return $this->hasMany(Process_result::class);
+        }
 
 }

@@ -12,8 +12,8 @@ class Bp_result extends Model
         'bp_result',
     ];
     
-    public function process_result()
-    {
-        return $this->belongsTo(Process_result::class);
-    }
+    public function evidence()
+        {
+            return $this->hasMany(Evidence::class, 'bp_id');
+        }
 }

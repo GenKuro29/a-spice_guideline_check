@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{!! Form::text('prj_purpose', null, ['class' => 'form-control input-lg']) !!}</td>
+                            <td>{!! Form::textarea('prj_purpose', null, ['class' => 'form-control']) !!}</td>
                         </tr>
                     </tbody>
                     

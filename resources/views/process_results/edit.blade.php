@@ -48,15 +48,14 @@
                                     @foreach ($evidence as $a_evidence)
                                         <tr>
                                             @if ($first == true)
-                                            <td rowspan="2">{{ $man3_bp_result->bp_number }}</td>
-                                            <td rowspan="2">{!! Form::text('man3_bp_result[]', $man3_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
-                                            <?php $first = false; ?>
+                                                <td rowspan="2">{{ $man3_bp_result->bp_number }}</td>
+                                                <td rowspan="2">{!! Form::text('man3_bp_result[]', $man3_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
+                                                <?php $first = false; ?>
                                             @endif
-                                            <td>{!! Form::text('evidence_type[]', $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
-                                            <td>{!! Form::text('evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control']) !!}</td>
-                                            <td>{!! Form::text('evidence_document[]', $a_evidence->evidence_document, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::text('man3_evidence_type[]', $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::text('man3_evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::text('man3_evidence_document[]', $a_evidence->evidence_document, ['class' => 'form-control']) !!}</td>
                                         </tr>
-
                                     @endforeach
                                     
                                 @endforeach
@@ -95,13 +94,23 @@
                                 $swe1_bp_results = $process_results->where('process_area_name','SWE.1')->first()->bp_results()->get();
                                 ?>
                                 @foreach ($swe1_bp_results as $swe1_bp_result)
-                                    <tr>
-                                        <td>{{ $swe1_bp_result->bp_number }}</td>
-                                        <td>{!! Form::text('swe1_bp_result[]', $swe1_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
-                                        <td>エビデンス_comment</td>
-                                        <td>エビデンス_type</td>
-                                        <td>エビデンス</td>
-                                    </tr>
+                                    <?php
+                                        $first = true; //rowspanで初回のみ表示するコンテンツを制御する
+                                        // 対象BPに紐づくエビデンスのデータを全て取得する
+                                        $evidence = $swe1_bp_result->evidence()->get();
+                                    ?>
+                                    @foreach ($evidence as $a_evidence)
+                                        <tr>
+                                            @if ($first == true)
+                                                <td rowspan="2">{{ $swe1_bp_result->bp_number }}</td>
+                                                <td rowspan="2">{!! Form::text('swe1_bp_result[]', $swe1_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
+                                                <?php $first = false; ?>
+                                            @endif
+                                            <td>{!! Form::text('swe1_evidence_type[]', $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::text('swe1_evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::text('swe1_evidence_document[]', $a_evidence->evidence_document, ['class' => 'form-control']) !!}</td>
+                                        </tr>
+                                    @endforeach
                                 @endforeach
                             </tbody>
                         </table>
@@ -138,13 +147,23 @@
                                 $swe6_bp_results = $process_results->where('process_area_name','SWE.6')->first()->bp_results()->get();
                                 ?>
                                 @foreach ($swe6_bp_results as $swe6_bp_result)
-                                    <tr>
-                                        <td>{{ $swe6_bp_result->bp_number }}</td>
-                                        <td>{!! Form::text('swe6_bp_result[]', $swe6_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
-                                        <td>エビデンス_comment</td>
-                                        <td>エビデンス_type</td>
-                                        <td>エビデンス</td>
-                                    </tr>
+                                    <?php
+                                        $first = true; //rowspanで初回のみ表示するコンテンツを制御する
+                                        // 対象BPに紐づくエビデンスのデータを全て取得する
+                                        $evidence = $swe6_bp_result->evidence()->get();
+                                    ?>
+                                    @foreach ($evidence as $a_evidence)
+                                        <tr>
+                                            @if ($first == true)
+                                                <td rowspan="2">{{ $swe6_bp_result->bp_number }}</td>
+                                                <td rowspan="2">{!! Form::text('swe6_bp_result[]', $swe6_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
+                                                <?php $first = false; ?>
+                                            @endif
+                                            <td>{!! Form::text('swe6_evidence_type[]', $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::text('swe6_evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::text('swe6_evidence_document[]', $a_evidence->evidence_document, ['class' => 'form-control']) !!}</td>
+                                        </tr>
+                                    @endforeach
                                 @endforeach
                             </tbody>
                         </table>

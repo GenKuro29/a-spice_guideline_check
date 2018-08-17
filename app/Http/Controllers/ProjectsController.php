@@ -203,9 +203,9 @@ class ProjectsController extends Controller
             $evidence = $bp_results->evidence()->get();
             foreach ($evidence as $a_evidence)
             {
-                $a_evidence->evidence_type = $request->evidence_type[$j];
-                $a_evidence->evidence_comment = $request->evidence_comment[$j];
-                $a_evidence->evidence_document = $request->evidence_document[$j];
+                $a_evidence->evidence_type = $request->man3_evidence_type[$j];
+                $a_evidence->evidence_comment = $request->man3_evidence_comment[$j];
+                $a_evidence->evidence_document = $request->man3_evidence_document[$j];
                 $a_evidence->save();
                 $j++;
             }
@@ -220,11 +220,23 @@ class ProjectsController extends Controller
         
         //各BPのデータを更新
         $swe1_process_id = $process_results->id;
+        $j=0;
         for ($i=1; $i <9; $i++)
         {
             $bp_results = Bp_result::where('process_id', $swe1_process_id)->where('bp_number','BP' . $i)->first();
             $bp_results->bp_result = $request->swe1_bp_result[$i-1];
             $bp_results->save();
+            
+            //エビデンスの情報を更新(2つ固定)
+            $evidence = $bp_results->evidence()->get();
+            foreach ($evidence as $a_evidence)
+            {
+                $a_evidence->evidence_type = $request->swe1_evidence_type[$j];
+                $a_evidence->evidence_comment = $request->swe1_evidence_comment[$j];
+                $a_evidence->evidence_document = $request->swe1_evidence_document[$j];
+                $a_evidence->save();
+                $j++;
+            }
         }
         
         // SWE.6の結果を更新        
@@ -234,12 +246,24 @@ class ProjectsController extends Controller
         $process_results->save();
         
         //各BPのデータを更新
+        $j=0;
         $swe6_process_id = $process_results->id;
         for ($i=1; $i <8; $i++)
         {
             $bp_results = Bp_result::where('process_id', $swe6_process_id)->where('bp_number','BP' . $i)->first();
             $bp_results->bp_result = $request->swe6_bp_result[$i-1];
             $bp_results->save();
+            
+             //エビデンスの情報を更新(2つ固定)
+            $evidence = $bp_results->evidence()->get();
+            foreach ($evidence as $a_evidence)
+            {
+                $a_evidence->evidence_type = $request->swe6_evidence_type[$j];
+                $a_evidence->evidence_comment = $request->swe6_evidence_comment[$j];
+                $a_evidence->evidence_document = $request->swe6_evidence_document[$j];
+                $a_evidence->save();
+                $j++;
+            }
         }
         
         return redirect('/projects');

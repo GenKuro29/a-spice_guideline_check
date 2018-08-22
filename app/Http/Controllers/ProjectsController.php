@@ -9,6 +9,20 @@ use App\Process_result;
 use App\Bp_result;
 use App\Evidence;
 
+const man3_bp_amount = 10;
+const swe1_bp_amount = 8;
+const swe6_bp_amount = 7;
+
+/* 2次元配列をclass外で定義できないのか？(defineで1次元はできる)
+$process_bp_amount = array();
+$process_bp_amount[0]['name'] = "MAN.3";
+$process_bp_amount[0]['bp_amount'] = 10;
+$process_bp_amount[1]['name'] = "SWE.1";
+$process_bp_amount[1]['bp_amount'] = 8;
+$process_bp_amount[2]['name'] = "SWE.6";
+$process_bp_amount[2]['bp_amount'] = 7;
+*/
+
 class ProjectsController extends Controller
 {
     /**
@@ -49,6 +63,8 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
+
+
         //テーブル"projects"にデータを保存
         $project = new Project;
         $project->prj_name = $request->prj_name;
@@ -69,7 +85,7 @@ class ProjectsController extends Controller
         $process_result->save();
         
         //テーブル(process_results)に必ず紐づく子テーブル(bp_results)のレコードを作成する
-        for ($i=1; $i <11; $i++){
+        for ($i=1; $i <= man3_bp_amount; $i++){
             $bp_result = new Bp_result;
             $bp_result->process_id = $process_result->id;
             $bp_result->bp_number = 'BP'. $i;
@@ -90,7 +106,7 @@ class ProjectsController extends Controller
         $process_result->save();
         
         //テーブル(process_results)に必ず紐づく子テーブル(bp_results)のレコードを作成する
-        for ($i=1; $i <9; $i++){
+        for ($i=1; $i <= swe1_bp_amount; $i++){
             $bp_result = new Bp_result;
             $bp_result->process_id = $process_result->id;
             $bp_result->bp_number = 'BP'. $i;
@@ -111,7 +127,7 @@ class ProjectsController extends Controller
         $process_result->save();
         
         //テーブル(process_results)に必ず紐づく子テーブル(bp_results)のレコードを作成する
-        for ($i=1; $i <8; $i++){
+        for ($i=1; $i <= swe6_bp_amount; $i++){
             $bp_result = new Bp_result;
             $bp_result->process_id = $process_result->id;
             $bp_result->bp_number = 'BP'. $i;
@@ -193,7 +209,7 @@ class ProjectsController extends Controller
         //各BPのデータを更新
         $man3_process_id = $process_results->id;
         $j=0;
-        for ($i=1; $i <11; $i++)
+        for ($i=1; $i <=man3_bp_amount; $i++)
         {
             $bp_results = Bp_result::where('process_id', $man3_process_id)->where('bp_number','BP' . $i)->first();
             $bp_results->bp_result = $request->man3_bp_result[$i-1];
@@ -221,7 +237,7 @@ class ProjectsController extends Controller
         //各BPのデータを更新
         $swe1_process_id = $process_results->id;
         $j=0;
-        for ($i=1; $i <9; $i++)
+        for ($i=1; $i <=swe1_bp_amount; $i++)
         {
             $bp_results = Bp_result::where('process_id', $swe1_process_id)->where('bp_number','BP' . $i)->first();
             $bp_results->bp_result = $request->swe1_bp_result[$i-1];
@@ -248,7 +264,7 @@ class ProjectsController extends Controller
         //各BPのデータを更新
         $j=0;
         $swe6_process_id = $process_results->id;
-        for ($i=1; $i <8; $i++)
+        for ($i=1; $i <=swe6_bp_amount; $i++)
         {
             $bp_results = Bp_result::where('process_id', $swe6_process_id)->where('bp_number','BP' . $i)->first();
             $bp_results->bp_result = $request->swe6_bp_result[$i-1];

@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{!! Form::textarea('prj_purpose', null, ['class' => 'form-control']) !!}</td>
+                            <td>{!! Form::textarea('prj_purpose', null, ['class' => 'form-control', 'rows' => '4']) !!}</td>
                         </tr>
                     </tbody>
                     
@@ -50,7 +50,7 @@
                     
                 </table>
                 
-                //各プロセスに対する結果を表示
+                <!--各プロセスに対する結果を表示-->
                 @include('process_results.edit')
 
                 {!! Form::submit('更新',['class' => 'btn btn-primary']) !!}

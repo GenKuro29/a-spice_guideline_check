@@ -20,7 +20,7 @@
                             <tbody>
                                 <tr>
                                     <td>{!! Form::text('MAN3_process_result', $process_results->where('process_area_name', 'MAN.3')->first()->process_result, ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::text('MAN3_process_comment', $process_results->where('process_area_name', 'MAN.3')->first()->process_comment, ['class' => 'form-control']) !!}</td>
+                                    <td>{!! Form::textarea('MAN3_process_comment', $process_results->where('process_area_name', 'MAN.3')->first()->process_comment, ['class' => 'form-control', 'rows' => '2']) !!}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -75,7 +75,7 @@
                             <tbody>
                                 <tr>
                                     <td>{!! Form::text('SWE1_process_result', $process_results->where('process_area_name', 'SWE.1')->first()->process_result, ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::text('SWE1_process_comment', $process_results->where('process_area_name', 'SWE.1')->first()->process_comment, ['class' => 'form-control']) !!}</td>
+                                    <td>{!! Form::textarea('SWE1_process_comment', $process_results->where('process_area_name', 'SWE.1')->first()->process_comment, ['class' => 'form-control', 'rows' => '2']) !!}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -128,7 +128,7 @@
                             <tbody>
                                 <tr>
                                     <td>{!! Form::text('SWE6_process_result', $process_results->where('process_area_name', 'SWE.6')->first()->process_result, ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::text('SWE6_process_comment', $process_results->where('process_area_name', 'SWE.6')->first()->process_comment, ['class' => 'form-control']) !!}</td>
+                                    <td>{!! Form::textarea('SWE6_process_comment', $process_results->where('process_area_name', 'SWE.6')->first()->process_comment, ['class' => 'form-control', 'rows' => '2']) !!}</td>
                                 </tr>
                             </tbody>
                         </table>

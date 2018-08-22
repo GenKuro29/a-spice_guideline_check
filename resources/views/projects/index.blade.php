@@ -4,7 +4,7 @@
     @if (count($projects) > 0)
             <table class="table table-bordered">
                 <thead>
-                    <tr class="text-center bg-primary">
+                    <tr class="text-center bg-success">
                         <th class="text-center">プロジェクト名</th>
                         <th class="text-center">MAN.3</th>
                         <th class="text-center">SWE.1</th>

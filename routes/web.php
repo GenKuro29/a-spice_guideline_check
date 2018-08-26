@@ -23,4 +23,4 @@ Route::get('/', function () {
 // create:新規作成時の登録フォームページ
 Route::resource('projects', 'ProjectsController', ['only' => ['index', 'show', 'update', 'store', 'create']]);
 Route::resource('guidelines', 'GuidelinesController', ['only' => ['index', 'store', 'create']]);
-
+Route::resource('guidelinechecks', 'GuidelineChecksController', ['only' => ['show', 'update']]);

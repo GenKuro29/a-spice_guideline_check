@@ -6,6 +6,7 @@
                     <li><a href="#swe1" data-toggle="tab">SWE.1</a></li>
                     <li><a href="#swe6" data-toggle="tab">SWE.6</a></li>
                 </ul>
+                {!! link_to_route('guidelinechecks.show', $project->prj_name . "のガイドラインチェック", ['id' => $project->id], ['target' => 'a_blank']) !!}
                 <div class="tab-content">
                     
                     <!--TAB"MAN.3"選択時の表示-->
@@ -24,10 +25,10 @@
                                 </tr>
                             </tbody>
                         </table>
-                         <table class="table table-bordered">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr class="bg-success">
-                                    <th class="text-center">BP</th></th>
+                                    <th class="text-center">BP</th>
                                     <th class="text-center">評定</th>
                                     <th class="text-center">種別</th>
                                     <th class="text-center">コメント</th>
@@ -82,7 +83,7 @@
                          <table class="table table-bordered">
                             <thead>
                                 <tr class="bg-success">
-                                    <th class="text-center">BP</th></th>
+                                    <th class="text-center">BP</th>
                                     <th class="text-center">評定</th>
                                     <th class="text-center">種別</th>
                                     <th class="text-center">コメント</th>
@@ -135,7 +136,7 @@
                          <table class="table table-bordered">
                             <thead>
                                 <tr class="bg-success">
-                                    <th class="text-center">BP</th></th>
+                                    <th class="text-center">BP</th>
                                     <th class="text-center">評定</th>
                                     <th class="text-center">種別</th>
                                     <th class="text-center">コメント</th>

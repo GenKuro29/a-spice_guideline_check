@@ -17,4 +17,12 @@ class Process_result extends Model
         {
             return $this->hasMany(Bp_result::class, 'process_id');
         }
+        
+    Public function guideline_checks()
+    {
+        return $this->hasMany(Guideline_check::class, 'process_id');
+    }
+
+
+
 }

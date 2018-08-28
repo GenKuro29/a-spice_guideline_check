@@ -9,7 +9,7 @@ use App\Process_result;
 use App\Bp_result;
 use App\Evidence;
 use App\Guideline;
-use App\GuidelineCheck;
+use App\Guideline_check;
 
 const man3_bp_amount = 10;
 const swe1_bp_amount = 8;
@@ -106,7 +106,7 @@ class ProjectsController extends Controller
         $guidelines = Guideline::where('process_area_name', 'MAN.3')->get();
         foreach ($guidelines as $guideline)
         {
-            $guideline_check = new GuidelineCheck;
+            $guideline_check = new Guideline_check;
             $guideline_check->process_id = $process_result->id;
             $guideline_check->guideline_ref_id = $guideline->id;
             $guideline_check->save();
@@ -137,7 +137,7 @@ class ProjectsController extends Controller
         $guidelines = Guideline::where('process_area_name', 'SWE.1')->get();
         foreach ($guidelines as $guideline)
         {
-            $guideline_check = new GuidelineCheck;
+            $guideline_check = new Guideline_check;
             $guideline_check->process_id = $process_result->id;
             $guideline_check->guideline_ref_id = $guideline->id;
             $guideline_check->save();
@@ -168,7 +168,7 @@ class ProjectsController extends Controller
         $guidelines = Guideline::where('process_area_name', 'SWE.6')->get();
         foreach ($guidelines as $guideline)
         {
-            $guideline_check = new GuidelineCheck;
+            $guideline_check = new Guideline_check;
             $guideline_check->process_id = $process_result->id;
             $guideline_check->guideline_ref_id = $guideline->id;
             $guideline_check->save();
@@ -219,6 +219,8 @@ class ProjectsController extends Controller
             'prj_purpose' => 'required|max:191',
             'assessed_organization' => 'required|max:191',
         ]);
+        
+      
         
         // プロジェクトの情報を更新
         $project = Project::find($id);

@@ -20,7 +20,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{!! Form::text('MAN3_process_result', $process_results->where('process_area_name', 'MAN.3')->first()->process_result, ['class' => 'form-control']) !!}</td>
+                                    <td>{!! Form::select('MAN3_process_result',[''=>'', 'F'=>'F', 'L'=>'L', 'P'=>'P', 'N'=>'N'],  $process_results->where('process_area_name', 'MAN.3')->first()->process_result, ['class' => 'form-control']) !!}</td>
                                     <td>{!! Form::textarea('MAN3_process_comment', $process_results->where('process_area_name', 'MAN.3')->first()->process_comment, ['class' => 'form-control', 'rows' => '2']) !!}</td>
                                 </tr>
                             </tbody>
@@ -50,11 +50,11 @@
                                         <tr>
                                             @if ($first == true)
                                                 <td rowspan="2">{{ $man3_bp_result->bp_number }}</td>
-                                                <td rowspan="2">{!! Form::text('man3_bp_result[]', $man3_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
+                                                <td rowspan="2">{!! Form::select('man3_bp_result[]',['null'=>'', 'F'=>'F', 'L'=>'L', 'P'=>'P', 'N'=>'N'],  $man3_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
                                                 <?php $first = false; ?>
                                             @endif
-                                            <td>{!! Form::text('man3_evidence_type[]', $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
-                                            <td>{!! Form::text('man3_evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::select('man3_evidence_type[]',['null'=>'', 'strength'=>'+', 'weakness'=>'-', 'neutral'=>'±'],  $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::textarea('man3_evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control', 'rows' => '2']) !!}</td>
                                             <td>{!! Form::text('man3_evidence_document[]', $a_evidence->evidence_document, ['class' => 'form-control']) !!}</td>
                                         </tr>
                                     @endforeach
@@ -75,7 +75,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{!! Form::text('SWE1_process_result', $process_results->where('process_area_name', 'SWE.1')->first()->process_result, ['class' => 'form-control']) !!}</td>
+                                    <td>{!! Form::select('SWE1_process_result',[''=>'', 'F'=>'F', 'L'=>'L', 'P'=>'P', 'N'=>'N'], $process_results->where('process_area_name', 'SWE.1')->first()->process_result, ['class' => 'form-control']) !!}</td>
                                     <td>{!! Form::textarea('SWE1_process_comment', $process_results->where('process_area_name', 'SWE.1')->first()->process_comment, ['class' => 'form-control', 'rows' => '2']) !!}</td>
                                 </tr>
                             </tbody>
@@ -104,11 +104,11 @@
                                         <tr>
                                             @if ($first == true)
                                                 <td rowspan="2">{{ $swe1_bp_result->bp_number }}</td>
-                                                <td rowspan="2">{!! Form::text('swe1_bp_result[]', $swe1_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
+                                                <td rowspan="2">{!! Form::select('swe1_bp_result[]',['null'=>'', 'F'=>'F', 'L'=>'L', 'P'=>'P', 'N'=>'N'],  $swe1_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
                                                 <?php $first = false; ?>
                                             @endif
-                                            <td>{!! Form::text('swe1_evidence_type[]', $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
-                                            <td>{!! Form::text('swe1_evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::select('swe1_evidence_type[]',['null'=>'', 'strength'=>'+', 'weakness'=>'-', 'neutral'=>'±'],  $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::textarea('swe1_evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control', 'rows' => '2']) !!}</td>
                                             <td>{!! Form::text('swe1_evidence_document[]', $a_evidence->evidence_document, ['class' => 'form-control']) !!}</td>
                                         </tr>
                                     @endforeach
@@ -128,7 +128,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{!! Form::text('SWE6_process_result', $process_results->where('process_area_name', 'SWE.6')->first()->process_result, ['class' => 'form-control']) !!}</td>
+                                    <td>{!! Form::select('SWE6_process_result', [''=>'', 'Fully'=>'F', 'L'=>'L', 'P'=>'P', 'N'=>'N'], $process_results->where('process_area_name', 'SWE.6')->first()->process_result, ['class' => 'form-control']) !!}</td>
                                     <td>{!! Form::textarea('SWE6_process_comment', $process_results->where('process_area_name', 'SWE.6')->first()->process_comment, ['class' => 'form-control', 'rows' => '2']) !!}</td>
                                 </tr>
                             </tbody>
@@ -157,11 +157,11 @@
                                         <tr>
                                             @if ($first == true)
                                                 <td rowspan="2">{{ $swe6_bp_result->bp_number }}</td>
-                                                <td rowspan="2">{!! Form::text('swe6_bp_result[]', $swe6_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
+                                                <td rowspan="2">{!! Form::select('swe6_bp_result[]',['null'=>'', 'F'=>'F', 'L'=>'L', 'P'=>'P', 'N'=>'N'],  $swe6_bp_result->bp_result, ['class' => 'form-control']) !!}</td>
                                                 <?php $first = false; ?>
                                             @endif
-                                            <td>{!! Form::text('swe6_evidence_type[]', $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
-                                            <td>{!! Form::text('swe6_evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::select('swe6_evidence_type[]',['null'=>'', 'strength'=>'+', 'weakness'=>'-', 'neutral'=>'±'],  $a_evidence->evidence_type, ['class' => 'form-control']) !!}</td>
+                                            <td>{!! Form::textarea('swe6_evidence_comment[]', $a_evidence->evidence_comment, ['class' => 'form-control', 'rows' => '2']) !!}</td>
                                             <td>{!! Form::text('swe6_evidence_document[]', $a_evidence->evidence_document, ['class' => 'form-control']) !!}</td>
                                         </tr>
                                     @endforeach

@@ -17,8 +17,8 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr class="bg-success">
-                            <th class="text-center">チェック結果</th>
-                            <th class="text-center">ガイドライン番号</th>
+                            <th class="text-center col-xs-2 col-sm-2 col-md-1 col-lg-1"">チェック結果</th>
+                            <th class="text-center col-xs-2 col-sm-2 col-md-2 col-lg-2">ガイドライン番号</th>
                             <th class="text-center">概要</th>
                         </tr>
                     </thead>
@@ -33,7 +33,7 @@
                                     <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'MAN.3')->get(); ?>
                                     @if($guideline->first())
                                     <tr>
-                                        <td>{!! Form::text('guideline_result[]', $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
+                                        <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
                                         <td>{{ $guideline->first()->guideline_id }}</td>
                                         <td>{{ $guideline->first()->guideline_description }}</td>
                                     </tr>
@@ -47,13 +47,13 @@
             
             
             <!--TAB"SWE.1"を選択時の表示-->
-            <div class="tab-pane active" id="swe1">
+            <div class="tab-pane" id="swe1">
                 <table class="table table-bordered">
                     <thead>
                         <tr class="bg-success">
-                            <th class="text-center">チェック結果</th>
-                            <th class="text-center">ガイドライン番号</th>
-                            <th class="text-center">概要</th>
+                            <th class="text-center col-xs-2 col-sm-2 col-md-1 col-lg-1">チェック結果</th>
+                            <th class="text-center col-xs-2 col-sm-2 col-md-2 col-lg-2">ガイドライン番号</th>
+                            <th class="text-center ">概要</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +67,7 @@
                                     <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'SWE.1')->get(); ?>
                                     @if($guideline->first())
                                     <tr>
-                                        <td>{!! Form::text('guideline_result[]', $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
+                                        <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
                                         <td>{{ $guideline->first()->guideline_id }}</td>
                                         <td>{{ $guideline->first()->guideline_description }}</td>
                                     </tr>
@@ -81,12 +81,12 @@
             
             
                         <!--TAB"SWE.6"を選択時の表示-->
-            <div class="tab-pane active" id="swe6">
+            <div class="tab-pane" id="swe6">
                 <table class="table table-bordered">
                     <thead>
                         <tr class="bg-success">
-                            <th class="text-center">チェック結果</th>
-                            <th class="text-center">ガイドライン番号</th>
+                            <th class="text-center col-xs-2 col-sm-2 col-md-1 col-lg-1"">チェック結果</th>
+                            <th class="text-center col-xs-2 col-sm-2 col-md-2 col-lg-2"">ガイドライン番号</th>
                             <th class="text-center">概要</th>
                         </tr>
                     </thead>
@@ -101,7 +101,7 @@
                                     <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'SWE.6')->get(); ?>
                                     @if($guideline->first())
                                     <tr>
-                                        <td>{!! Form::text('guideline_result[]', $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
+                                        <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
                                         <td>{{ $guideline->first()->guideline_id }}</td>
                                         <td>{{ $guideline->first()->guideline_description }}</td>
                                     </tr>
@@ -116,5 +116,8 @@
             
             
         </div>
+        
+        {!! Form::submit('更新',['class' => 'btn btn-primary']) !!}
+
     {!! Form::close() !!}
 @endsection

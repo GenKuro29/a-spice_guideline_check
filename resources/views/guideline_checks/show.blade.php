@@ -6,14 +6,14 @@
     <!--ガイドラインのチェック状況を表示/更新フォーム-->
     <!--プロセスエリアの切り替え用タブ-->
     <ul class="nav nav-pills">
-        <li class="active"><a href="#man3" data-toggle="tab">MAN.3</a></li>
-        <li><a href="#swe1" data-toggle="tab">SWE.1</a></li>
-        <li><a href="#swe6" data-toggle="tab">SWE.6</a></li>
+        <li class="active"><a href="#MAN3" data-toggle="tab">MAN3</a></li>
+        <li><a href="#swe1" data-toggle="tab">SWE1</a></li>
+        <li><a href="#swe6" data-toggle="tab">SWE6</a></li>
     </ul>
     {!! Form::model($project, ['route' => ['guidelinechecks.update', $project->id], 'method'=> 'put',]) !!}
         <div class="tab-content">
-            <!--TAB"MAN.3#を選択時の表示-->
-            <div class="tab-pane active" id="man3">
+            <!--TAB"MAN3#を選択時の表示-->
+            <div class="tab-pane active" id="MAN3">
                 <table class="table table-bordered">
                     <thead>
                         <tr class="bg-success">
@@ -30,7 +30,7 @@
                             <?php $guideline_checks = $process_result->guideline_checks()->get(); ?>
                             
                                 @foreach($guideline_checks as $guideline_check)
-                                    <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'MAN.3')->get(); ?>
+                                    <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'MAN3')->get(); ?>
                                     @if($guideline->first())
                                     <tr>
                                         <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
@@ -46,7 +46,7 @@
             </div>
             
             
-            <!--TAB"SWE.1"を選択時の表示-->
+            <!--TAB"SWE1"を選択時の表示-->
             <div class="tab-pane" id="swe1">
                 <table class="table table-bordered">
                     <thead>
@@ -64,7 +64,7 @@
                             <?php $guideline_checks = $process_result->guideline_checks()->get(); ?>
                             
                                 @foreach($guideline_checks as $guideline_check)
-                                    <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'SWE.1')->get(); ?>
+                                    <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'SWE1')->get(); ?>
                                     @if($guideline->first())
                                     <tr>
                                         <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
@@ -80,7 +80,7 @@
             </div>
             
             
-                        <!--TAB"SWE.6"を選択時の表示-->
+                        <!--TAB"SWE6"を選択時の表示-->
             <div class="tab-pane" id="swe6">
                 <table class="table table-bordered">
                     <thead>
@@ -98,7 +98,7 @@
                             <?php $guideline_checks = $process_result->guideline_checks()->get(); ?>
                             
                                 @foreach($guideline_checks as $guideline_check)
-                                    <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'SWE.6')->get(); ?>
+                                    <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'SWE6')->get(); ?>
                                     @if($guideline->first())
                                     <tr>
                                         <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>

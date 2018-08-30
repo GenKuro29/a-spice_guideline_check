@@ -6,57 +6,22 @@
                 <thead>
                     <tr class="text-center bg-success">
                         <th class="text-center">プロジェクト名</th>
-                        <th class="text-center">MAN.3</th>
-                        <th class="text-center">SWE.1</th>
-                        <th class="text-center">SWE.6</th>
+                            @foreach($process_area_name_lists as $process_area_name_list)
+                                <th class="text-center">{{ $process_area_name_list }}</th>
+                            @endforeach
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($projects as $project) 
                         <tr>
                             <td class="text-center">{!! link_to_route('projects.show', $project->prj_name, ['id' => $project->id]) !!}</td>
-                            @if ($process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first())
-                                <!--表示する値によって、背景色を分ける-->
-                                @if ($process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first()->process_result == "F" )
-                                    <td class="text-center bg-success">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first()->process_result }}</td>
-                                @elseif($process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first()->process_result == "L" )
-                                    <td class="text-center bg-info">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first()->process_result }}</td>
-                                @elseif($process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first()->process_result == "P" )
-                                    <td class="text-center bg-warning">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first()->process_result }}</td>
-                                @elseif($process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first()->process_result == "N" )
-                                    <td class="text-center bg-danger">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first()->process_result }}</td>
-                                @else
-                                    <td class="text-center">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'MAN.3')->first()->process_result }}</td>
-                                @endif
-                            @endif
-                            @if ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first())
-                                @if ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first()->process_result == "F")
-                                    <td class="text-center bg-success">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first()->process_result }}</td>
-                                @elseif ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first()->process_result == "L")
-                                    <td class="text-center bg-info">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first()->process_result }}</td>
-                                @elseif ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first()->process_result == "P")
-                                    <td class="text-center bg-warning">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first()->process_result }}</td>
-                                @elseif ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first()->process_result == "N")
-                                    <td class="text-center bg-danger">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first()->process_result }}</td>     
-                                @else
-                                    <td class="text-center">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.1')->first()->process_result }}</td>
-                                @endif
-                            @endif
-                            
-                            @if ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first())
-                                @if ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first()->process_result =="F")
-                                    <td class="text-center bg-success">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first()->process_result }}</td>
-                                @elseif ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first()->process_result =="L")
-                                    <td class="text-center bg-info">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first()->process_result }}</td>
-                                @elseif ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first()->process_result =="P")
-                                    <td class="text-center bg-warning">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first()->process_result }}</td>
-                                @elseif ($process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first()->process_result =="N")
-                                    <td class="text-center bg-danger">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first()->process_result }}</td>
-                                @else
-                                    <td class="text-center">{{ $process_results->where('project_id', $project->id)->where('process_area_name', 'SWE.6')->first()->process_result }}</td>
-                                @endif
-                                
-                            @endif
+                                @foreach($process_area_name_lists as $process_area_name_list)
+                                    @if ($process_results->where('project_id', $project->id)->where('process_area_name', $process_area_name_list)->first())
+                                    <!--表示する値によって、背景色を分ける-->
+                                        <?php $p_result =$process_results->where('project_id', $project->id)->where('process_area_name', $process_area_name_list)->first()->process_result; ?>
+                                        <td class="text-center {{ \Config::get('const.back_ground')[$p_result] }}">{{ $p_result }}</td>
+                                    @endif
+                                @endforeach
                         </tr>
                     @endforeach
                 </tbody>

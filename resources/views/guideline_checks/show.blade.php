@@ -35,7 +35,7 @@
                                     <tr>
                                         <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
                                         <td>{{ $guideline->first()->guideline_id }}</td>
-                                        <td>{{ $guideline->first()->guideline_description }}</td>
+                                        <td>{!! nl2br($guideline->first()->guideline_description) !!}</td>
                                     </tr>
                                     @endif
                                 @endforeach
@@ -69,7 +69,7 @@
                                     <tr>
                                         <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
                                         <td>{{ $guideline->first()->guideline_id }}</td>
-                                        <td>{{ $guideline->first()->guideline_description }}</td>
+                                        <td>{!! nl2br($guideline->first()->guideline_description) !!}</td>
                                     </tr>
                                     @endif
                                 @endforeach
@@ -103,7 +103,7 @@
                                     <tr>
                                         <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
                                         <td>{{ $guideline->first()->guideline_id }}</td>
-                                        <td>{{ $guideline->first()->guideline_description }}</td>
+                                        <td>{!! nl2br($guideline->first()->guideline_description) !!}</td>
                                     </tr>
                                     @endif
                                 @endforeach

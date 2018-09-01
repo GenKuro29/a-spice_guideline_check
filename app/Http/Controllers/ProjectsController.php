@@ -86,7 +86,7 @@ class ProjectsController extends Controller
             for ($i=1; $i <= $bp_amount; $i++){
                 $bp_result = new Bp_result;
                 $bp_result->process_id = $process_result->id;
-                $bp_result->bp_numberr = 'BP'. $i;
+                $bp_result->bp_number = 'BP'. $i;
                 $bp_result->save();
                 
                 //テーブル(bp_results)に必ず紐づく子テーブル(evidences)のレコードを2つ作成

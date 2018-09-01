@@ -14,9 +14,14 @@
                 </ul>
                 {!! link_to_route('guidelinechecks.show', $project->prj_name . "のガイドラインチェック", ['id' => $project->id], ['target' => 'a_blank']) !!}
                 <div class="tab-content">
-                    
+                    <?php $i=true; ?>
                     @foreach($process_area_info as $a_process_area_info)
-                        <div class="tab-pane active" id={{ $a_process_area_info['process_area_name'] }}>
+                        @if($i == true)
+                            <div class="tab-pane active" id={{ $a_process_area_info['process_area_name'] }}>
+                            <?php $i=false; ?>
+                        @else
+                            <div class="tab-pane" id={{ $a_process_area_info['process_area_name'] }}>
+                        @endif
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="bg-success">

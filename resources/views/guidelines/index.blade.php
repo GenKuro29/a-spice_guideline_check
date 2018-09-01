@@ -3,11 +3,11 @@
 @section('content')
     <!--プロセスエリア切り替え用のタブ-->
     <ul class="nav nav-pills">
-        <?php $i=true; ?>
+        <?php $first=true; ?>
         @foreach($process_area_info as $a_process_area_info)
-            @if($i == true)
+            @if($first == true)
                 <li class="active"><a href=#{{ $a_process_area_info['process_area_name'] }} data-toggle="tab">{{ $a_process_area_info['process_area_name'] }}</a></li>
-                <?php $i=false; ?>
+                <?php $first=false; ?>
             @else
                 <li ><a href=#{{ $a_process_area_info['process_area_name'] }} data-toggle="tab">{{ $a_process_area_info['process_area_name'] }}</a></li>
             @endif
@@ -16,9 +16,14 @@
     <div class="tab-content">
         
         <!---->
-       
+       <?php $first = true; ?>
         @foreach($process_area_info as $a_process_area_info)
-            <div class="tab-pane active" id={{ $a_process_area_info['process_area_name'] }}>
+            @if($first == true)
+                <div class="tab-pane active" id={{ $a_process_area_info['process_area_name'] }}>
+                    <?php $first=false; ?>
+            @else
+                <div class="tab-pane" id={{ $a_process_area_info['process_area_name'] }}>
+            @endif
                 <table class="table table-bordered">
                     <thead>
                         <tr class="text-center bg-success">

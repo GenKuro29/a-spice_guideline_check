@@ -22,7 +22,7 @@ class GuidelineChecksController extends Controller
             'process_results' => $process_results,
             'process_area_name_lists' => $process_area_name_lists,
             
-            // 'project_guideline_checks' => $project_guideline_checks,
+            
         ]);
     }
     

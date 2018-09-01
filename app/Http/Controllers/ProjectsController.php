@@ -12,20 +12,6 @@ use App\Guideline;
 use App\Guideline_check;
 
 
-//テーブル"projects"にデータを保存
-// const man3_bp_amount = 10;
-// const swe1_bp_amount = 8;
-// const swe6_bp_amount = 7;
-
-/* 2次元配列をclass外で定義できないのか？(defineで1次元はできる)
-$process_bp_amount = array();
-$process_bp_amount[0]['name'] = "MAN.3";
-$process_bp_amount[0]['bp_amount'] = 10;
-$process_bp_amount[1]['name'] = "SWE.1";
-$process_bp_amount[1]['bp_amount'] = 8;
-$process_bp_amount[2]['name'] = "SWE.6";
-$process_bp_amount[2]['bp_amount'] = 7;
-*/
 
 class ProjectsController extends Controller
 {
@@ -119,102 +105,7 @@ class ProjectsController extends Controller
             }
         }
         
-        
-/* ここから削除予定
-        // //MAN.3
-        // $process_result = new Process_result;
-        // $process_result->project_id = $project->id;
-        // $process_result->process_area_name = 'MAN.3';
-        // $process_result->save();
-        
-        // //テーブル(process_results)に必ず紐づく子テーブル(bp_results)のレコードを作成する
-        // for ($i=1; $i <= $man3_bp_amount; $i++){
-        //     $bp_result = new Bp_result;
-        //     $bp_result->process_id = $process_result->id;
-        //     $bp_result->bp_number = 'BP'. $i;
-        //     $bp_result->save();
-            
-        //     //テーブル(bp_results)に必ず紐づく子テーブル(evidences)のレコードを2つ作成
-        //     for ($j=0; $j<2; $j++){
-        //         $evidence = new Evidence;
-        //         $evidence->bp_id = $bp_result->id;
-        //         $evidence->save();
-        //     }
-        // }
-        
-        // //テーブル(process_results)に必ず紐づく子テーブル(guideline_checks)のレコードを作成する
-        // $guidelines = Guideline::where('process_area_name', 'MAN.3')->get();
-        // foreach ($guidelines as $guideline)
-        // {
-        //     $guideline_check = new Guideline_check;
-        //     $guideline_check->process_id = $process_result->id;
-        //     $guideline_check->guideline_ref_id = $guideline->id;
-        //     $guideline_check->save();
-        // }
-        
-        // //SWE.1
-        // $process_result = new Process_result;
-        // $process_result->project_id = $project->id;
-        // $process_result->process_area_name = 'SWE.1';
-        // $process_result->save();
-        
-        // //テーブル(process_results)に必ず紐づく子テーブル(bp_results)のレコードを作成する
-        // for ($i=1; $i <= $swe1_bp_amount; $i++){
-        //     $bp_result = new Bp_result;
-        //     $bp_result->process_id = $process_result->id;
-        //     $bp_result->bp_number = 'BP'. $i;
-        //     $bp_result->save();
-            
-        //     //テーブル(bp_results)に必ず紐づく子テーブル(evidences)のレコードを2つ作成
-        //     for ($j=0; $j<2; $j++){
-        //         $evidence = new Evidence;
-        //         $evidence->bp_id = $bp_result->id;
-        //         $evidence->save();
-        //     }
-        // }
-        
-        // //テーブル(process_results)に必ず紐づく子テーブル(guideline_checks)のレコードを作成する
-        // $guidelines = Guideline::where('process_area_name', 'SWE.1')->get();
-        // foreach ($guidelines as $guideline)
-        // {
-        //     $guideline_check = new Guideline_check;
-        //     $guideline_check->process_id = $process_result->id;
-        //     $guideline_check->guideline_ref_id = $guideline->id;
-        //     $guideline_check->save();
-        // }
-        
-        // //SWE.6
-        // $process_result = new Process_result;
-        // $process_result->project_id = $project->id;
-        // $process_result->process_area_name = 'SWE.6';
-        // $process_result->save();
-        
-        // //テーブル(process_results)に必ず紐づく子テーブル(bp_results)のレコードを作成する
-        // for ($i=1; $i <= $swe6_bp_amount; $i++){
-        //     $bp_result = new Bp_result;
-        //     $bp_result->process_id = $process_result->id;
-        //     $bp_result->bp_number = 'BP'. $i;
-        //     $bp_result->save();
-            
-        //     //テーブル(bp_results)に必ず紐づく子テーブル(evidences)のレコードを2つ作成
-        //     for ($j=0; $j<2; $j++){
-        //         $evidence = new Evidence;
-        //         $evidence->bp_id = $bp_result->id;
-        //         $evidence->save();
-        //     }
-        // }
-        
-        // //テーブル(process_results)に必ず紐づく子テーブル(guideline_checks)のレコードを作成する
-        // $guidelines = Guideline::where('process_area_name', 'SWE.6')->get();
-        // foreach ($guidelines as $guideline)
-        // {
-        //     $guideline_check = new Guideline_check;
-        //     $guideline_check->process_id = $process_result->id;
-        //     $guideline_check->guideline_ref_id = $guideline->id;
-        //     $guideline_check->save();
-        // }
-        ここまで削除予定
-        */
+
         
         return redirect('/projects');
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
 use App\Project;
 use App\Process_result;
 use App\Bp_result;
@@ -56,6 +57,8 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
+    // DBトランザクション処理
+    DB::transaction(function () use ($request) {
         $process_area_info = \Config::get('const.process_area_info');
 
         $project = new Project;
@@ -83,7 +86,7 @@ class ProjectsController extends Controller
             for ($i=1; $i <= $bp_amount; $i++){
                 $bp_result = new Bp_result;
                 $bp_result->process_id = $process_result->id;
-                $bp_result->bp_number = 'BP'. $i;
+                $bp_result->bp_numberr = 'BP'. $i;
                 $bp_result->save();
                 
                 //テーブル(bp_results)に必ず紐づく子テーブル(evidences)のレコードを2つ作成
@@ -105,7 +108,7 @@ class ProjectsController extends Controller
             }
         }
         
-
+    }); //ここまでトランザクション処理
         
         return redirect('/projects');
     }

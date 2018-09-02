@@ -6,118 +6,61 @@
     <!--ガイドラインのチェック状況を表示/更新フォーム-->
     <!--プロセスエリアの切り替え用タブ-->
     <ul class="nav nav-pills">
-        <li class="active"><a href="#MAN3" data-toggle="tab">MAN3</a></li>
-        <li><a href="#swe1" data-toggle="tab">SWE1</a></li>
-        <li><a href="#swe6" data-toggle="tab">SWE6</a></li>
+        <?php $first=true; ?>
+        @foreach($process_area_info as $a_process_area_info)
+            @if($first == true)
+                <li class="active"><a href=#{{ $a_process_area_info['process_area_name'] }} data-toggle="tab">{{ $a_process_area_info['process_area_name'] }}</a></li>
+                <?php $first = false; ?>
+            @else
+                <li><a href=#{{ $a_process_area_info['process_area_name'] }} data-toggle="tab">{{ $a_process_area_info['process_area_name'] }}</a></li>
+            @endif
+        @endforeach
     </ul>
+    
+    
+    <?php $first = true; ?>
     {!! Form::model($project, ['route' => ['guidelinechecks.update', $project->id], 'method'=> 'put',]) !!}
         <div class="tab-content">
-            <!--TAB"MAN3#を選択時の表示-->
-            <div class="tab-pane active" id="MAN3">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr class="bg-success">
-                            <th class="text-center col-xs-2 col-sm-2 col-md-1 col-lg-1"">チェック結果</th>
-                            <th class="text-center col-xs-2 col-sm-2 col-md-2 col-lg-2">ガイドライン番号</th>
-                            <th class="text-center">概要</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--対象プロジェクトのMan3に紐づくガイドラインチェック結果を取得する-->
-                        
-                        
-                        @foreach($process_results as $process_result)
-                            <?php $guideline_checks = $process_result->guideline_checks()->get(); ?>
-                            
-                                @foreach($guideline_checks as $guideline_check)
-                                    <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'MAN3')->get(); ?>
-                                    @if($guideline->first())
-                                    <tr>
-                                        <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
-                                        <td>{{ $guideline->first()->guideline_id }}</td>
-                                        <td>{!! nl2br($guideline->first()->guideline_description) !!}</td>
-                                    </tr>
-                                    @endif
-                                @endforeach
-                        @endforeach
-                        
-                    </tbody>
-                </table>
-            </div>
-            
-            
-            <!--TAB"SWE1"を選択時の表示-->
-            <div class="tab-pane" id="swe1">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr class="bg-success">
-                            <th class="text-center col-xs-2 col-sm-2 col-md-1 col-lg-1">チェック結果</th>
-                            <th class="text-center col-xs-2 col-sm-2 col-md-2 col-lg-2">ガイドライン番号</th>
-                            <th class="text-center ">概要</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--対象プロジェクトのMan3に紐づくガイドラインチェック結果を取得する-->
-                        
-                        
-                        @foreach($process_results as $process_result)
-                            <?php $guideline_checks = $process_result->guideline_checks()->get(); ?>
-                            
-                                @foreach($guideline_checks as $guideline_check)
-                                    <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'SWE1')->get(); ?>
-                                    @if($guideline->first())
-                                    <tr>
-                                        <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
-                                        <td>{{ $guideline->first()->guideline_id }}</td>
-                                        <td>{!! nl2br($guideline->first()->guideline_description) !!}</td>
-                                    </tr>
-                                    @endif
-                                @endforeach
-                        @endforeach
-                        
-                    </tbody>
-                </table>
-            </div>
-            
-            
-                        <!--TAB"SWE6"を選択時の表示-->
-            <div class="tab-pane" id="swe6">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr class="bg-success">
-                            <th class="text-center col-xs-2 col-sm-2 col-md-1 col-lg-1"">チェック結果</th>
-                            <th class="text-center col-xs-2 col-sm-2 col-md-2 col-lg-2"">ガイドライン番号</th>
-                            <th class="text-center">概要</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--対象プロジェクトのMan3に紐づくガイドラインチェック結果を取得する-->
-                        
-                        
-                        @foreach($process_results as $process_result)
-                            <?php $guideline_checks = $process_result->guideline_checks()->get(); ?>
-                            
-                                @foreach($guideline_checks as $guideline_check)
-                                    <?php $guideline =  $guideline_check->guideline()->where('process_area_name', 'SWE6')->get(); ?>
-                                    @if($guideline->first())
-                                    <tr>
-                                        <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
-                                        <td>{{ $guideline->first()->guideline_id }}</td>
-                                        <td>{!! nl2br($guideline->first()->guideline_description) !!}</td>
-                                    </tr>
-                                    @endif
-                                @endforeach
-                        @endforeach
-                        
-                    </tbody>
-                </table>
-            </div>
-            
-            
-            
+            @foreach($process_results as $process_result)
+                @if($first == true)
+                    <div class="tab-pane active" id= {{ $process_result->process_area_name }}>
+                    <?php $first = false; ?>
+                @else
+                    <div class="tab-pane" id= {{ $process_result->process_area_name }}>
+                @endif
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="bg-success">
+                                    <th class="text-center col-xs-2 col-sm-2 col-md-1 col-lg-1"">チェック結果</th>
+                                    <th class="text-center col-xs-2 col-sm-2 col-md-2 col-lg-2">ガイドライン番号</th>
+                                    <th class="text-center">概要</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <!--$process_resultに紐づくガイドラインチェックを取得する-->
+                                    <?php $guideline_checks = $process_result->guideline_checks()->get(); ?>
+                                    
+                                        @foreach($guideline_checks as $guideline_check)
+                                        
+                                        <!--ガイドラインチェックに紐づくガイドラインの情報を取得する-->
+                                            <?php $guideline =  $guideline_check->guideline()->get(); ?>
+                                            
+                                            @if($guideline->first())
+                                                <tr>
+                                                    <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
+                                                    <td>{{ $guideline->first()->guideline_id }}</td>
+                                                    <td>{!! nl2br($guideline->first()->guideline_description) !!}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+            @endforeach
         </div>
         
         {!! Form::submit('更新',['class' => 'btn btn-primary']) !!}
-
     {!! Form::close() !!}
 @endsection

@@ -16,8 +16,7 @@ class GuidelineChecksController extends Controller
         $process_results = $project->process_results()->get(["id","process_area_name"]);
         $process_area_name_lists = \Config::get('const.process_area_name_lists');
         $process_area_info = \Config::get('const.process_area_info');
-        // dd($process_area_info["MAN.3"]["process_area_name"]);
-
+        
         return view('guideline_checks.show', [
             'project' => $project,
             'process_results' => $process_results,
@@ -28,7 +27,7 @@ class GuidelineChecksController extends Controller
     
     public function update(Request $request, $id)
     {
-        // dd($request);
+        
         $project = Project::find($id); //該当プロジェクトを取得
         $process_results = $project->process_results()->get(["id","process_area_name"]); //紐づくプロセスを取得
         $i=0;

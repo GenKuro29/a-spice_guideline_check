@@ -36,6 +36,10 @@ class GuidelinesController extends Controller
     
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'guideline_description' => 'required|max:500',
+        ]);
+        
         //テーブル"projects"にデータを保存
         $guideline = new Guideline;
         $guideline->process_area_name = $request->process_area_name;

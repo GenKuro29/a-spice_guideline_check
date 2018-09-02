@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DB;
 use App\Project;
 use App\Process_result;
 use App\Bp_result;
@@ -57,8 +56,21 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $this->validate($request,[
+            'prj_name' => 'required|max:191',
+            'prj_purpose' => 'required|max:191',
+            'assessed_organization' => 'required|max:191',
+            'process_scope'=> 'max:191',
+            'location' => 'max:191',
+            'assessor' => 'max:191',
+            'interviewed_person' => 'max:191',
+        ]);
+        
+        
+    try{
     // DBトランザクション処理
-    DB::transaction(function () use ($request) {
+        \DB::transaction(function () use ($request) {
         $process_area_info = \Config::get('const.process_area_info');
 
         $project = new Project;
@@ -109,8 +121,14 @@ class ProjectsController extends Controller
         }
         
     }); //ここまでトランザクション処理
+    return redirect('/projects');
+    
+    }catch(\Exception $e){
+        return redirect()->back()->with('message', 'エラーのため、登録されませんでした');
+        // return redirect()->back()->with('message', $e->getMessage());
+    }
         
-        return redirect('/projects');
+        
     }
 
     /**
@@ -124,7 +142,7 @@ class ProjectsController extends Controller
         $project = Project::find($id);
         $process_results = $project->process_results()->get();
         $process_area_info = \Config::get('const.process_area_info');
-        // dd($process_area_info);
+        
         
         return view('projects.show', [
             'project' => $project,
@@ -153,6 +171,7 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $process_area_info = \Config::get('const.process_area_info');
         $man3_bp_amount = \Config::get('const.bp_amount.man3');
         $swe1_bp_amount = \Config::get('const.bp_amount.swe1');
@@ -161,8 +180,14 @@ class ProjectsController extends Controller
             'prj_name' => 'required|max:191',
             'prj_purpose' => 'required|max:191',
             'assessed_organization' => 'required|max:191',
+            'process_scope'=> 'max:191',
+            'location' => 'max:191',
+            'assessor' => 'max:191',
+            'interviewed_person' => 'max:191',
+            'process_comment' => 'max:191',
+            'evidence_comment' => 'max:191',
+            'evidence_document' => 'max:191',
         ]);
-        
       
         
         // プロジェクトの情報を更新

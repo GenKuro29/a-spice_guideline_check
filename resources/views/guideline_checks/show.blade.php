@@ -7,12 +7,12 @@
     <!--プロセスエリアの切り替え用タブ-->
     <ul class="nav nav-pills">
         <?php $first=true; ?>
-        @foreach($process_area_info as $a_process_area_info)
+        @foreach($process_results as $process_result)
             @if($first == true)
-                <li class="active"><a href=#{{ $a_process_area_info['process_area_name'] }} data-toggle="tab">{{ $a_process_area_info['process_area_name'] }}</a></li>
+                <li class="active"><a href=#{{ $process_result->process_area_name }} data-toggle="tab">{{ $process_result->process_area_name }}</a></li>
                 <?php $first = false; ?>
             @else
-                <li><a href=#{{ $a_process_area_info['process_area_name'] }} data-toggle="tab">{{ $a_process_area_info['process_area_name'] }}</a></li>
+                <li><a href=#{{ $process_result->process_area_name }} data-toggle="tab">{{ $process_result->process_area_name }}</a></li>
             @endif
         @endforeach
     </ul>

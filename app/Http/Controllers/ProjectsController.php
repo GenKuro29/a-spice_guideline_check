@@ -203,27 +203,29 @@ class ProjectsController extends Controller
         $project->save();
         
         
-        $i = 0;
-        $j = 0;
-        $k = 0;
+        $i = 0; //プロセスに対して、1つのデータがある場合、$requestに対して何番目のデータを扱っているかに使用 (process_resultなど)
+        $j = 0; //プロセスに対して、複数のデータがある場合、$requestに対して何番目のデータを扱っているかに使用(bp_resultなど)
+        $k = 0; //BPに対して、複数のデータがある場合、$requestに対して何番目のデータを扱っているかに使用(evidenceなど)
         $count=true;
         
-        foreach($process_area_info as $a_process_area_info)
+        $process_results = $project->process_results()->get();
+        foreach($process_results as $process_result)
         {
-            $process_results = Process_result::where('project_id', $id)->where('process_area_name', $a_process_area_info['process_area_name'])->first();
-            $process_results->process_result = $request->process_result[$i];
-            $process_results->process_comment = $request->process_comment[$i];
-            $process_results->save();
+            // $process_results = Process_result::where('project_id', $id)->where('process_area_name', $a_process_area_info['process_area_name'])->first();
+            $process_result->process_result = $request->process_result[$i];
+            $process_result->process_comment = $request->process_comment[$i];
+            $process_result->save();
             $i++;
             
             
             //各BPのデータを更新
-            $process_id = $process_results->id;
-            $bp_amount = $a_process_area_info['bp_amount'];
-            
+            $process_id = $process_result->id;
+            $bp_amount = $process_area_info[$process_result->process_area_name]['bp_amount'];
+            // dd($bp_amount);
             for ($bp_number=1; $bp_number <= $bp_amount; $bp_number++)
             {
                 $bp_results = Bp_result::where('process_id', $process_id)->where('bp_number','BP' . $bp_number)->first();
+                // dd($bp_results);
                 $bp_results->bp_result = $request->bp_result[$j]; 
                 $bp_results->save();
                 $j++;

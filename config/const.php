@@ -4,7 +4,8 @@ return [
     'bp_amount' => [
         'man3' => 10,
         'swe1' => 8,
-        'swe6' =>7,
+        'swe6' => 7,
+        'sup8' => 9,
     ],
     
     'bp_amount2' => [10,8,7],
@@ -13,29 +14,36 @@ return [
         'man3' => 'MAN3',
         'swe1' => 'SWE1',
         'swe6' => 'SWE6',
+        'sup8' => 'SUP8',
     ],
     
     'guideline_amount' => [
         'man3' => 48,
         'swe1' => 22,
-        'swe6' =>18, 
+        'swe6' => 18, 
+        'sup8' => 24,
     ],
     
     'process_area_info' =>[
-        'MAN.3' => [
+        'MAN3' => [
             'process_area_name' => 'MAN3',
             'bp_amount' => 10,
             'guideline_amount' => 48,
         ],
-        'SWE.1' => [
+        'SWE1' => [
             'process_area_name' => 'SWE1',
             'bp_amount' => 8,
             'guideline_amount' => 22,
         ],
-        'SWE.6' => [
+        'SWE6' => [
             'process_area_name' => 'SWE6',
             'bp_amount' => 7,
             'guideline_amount' => 18,
+        ],
+        'SUP8' => [
+            'process_area_name' => 'SUP8',
+            'bp_amount' => 9,
+            'guideline_amount' => 24,
         ],
     ],
     

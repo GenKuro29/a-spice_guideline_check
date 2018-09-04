@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         //追加
         $this->call(Man3GuidelinesTableSeeder::class);
         $this->call(GuidelinesTableSeeder::class);
+        $this->call(Sup8GuidelinesTableSeeder::class);
         
     }
 }

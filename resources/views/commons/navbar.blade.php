@@ -14,7 +14,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>{!! link_to_route('projects.create', 'プロジェクト登録') !!}</li>
                     <li>{!! link_to_route('projects.index', 'プロジェクト一覧') !!}</li>
-                    <li>{!! link_to_route('guidelines.create', 'ガイドライン登録(管理者用)') !!}</li>
+                    <!--<li>{!! link_to_route('guidelines.create', 'ガイドライン登録(管理者用)') !!}</li>-->
                     <li>{!! link_to_route('guidelines.index', '参考：ガイドライン') !!}</li>
                 </ul>
             </div>

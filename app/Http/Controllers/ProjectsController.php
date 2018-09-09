@@ -25,13 +25,15 @@ class ProjectsController extends Controller
     {
         $projects = Project::all();
         $process_results = Process_result::all();
-        $process_area_name_lists = \Config::get('const.process_area_name_lists');
+        // $process_area_name_lists = \Config::get('const.process_area_name_lists');
+        $process_area_info = \Config::get('const.process_area_info');
 
 
         return view('projects.index', [
             'projects' => $projects,
             'process_results' => $process_results,
-            'process_area_name_lists' => $process_area_name_lists,
+            // 'process_area_name_lists' => $process_area_name_lists,
+            'process_area_info' => $process_area_info,
         ]);
     }
 

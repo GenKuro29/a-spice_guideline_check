@@ -35,6 +35,11 @@ return [
             'bp_amount' => 8,
             'guideline_amount' => 22,
         ],
+        'SWE2' => [
+            'process_area_name' => 'SWE2',
+            'bp_amount' => 9,
+            'guideline_amount' => 13,
+        ],
         'SWE6' => [
             'process_area_name' => 'SWE6',
             'bp_amount' => 7,

@@ -18,6 +18,7 @@
     </ul>
     
     
+    
     <?php $first = true; ?>
     {!! Form::model($project, ['route' => ['guidelinechecks.update', $project->id], 'method'=> 'put',]) !!}
         <div class="tab-content">
@@ -40,21 +41,28 @@
                                     <!--$process_resultに紐づくガイドラインチェックを取得する-->
                                     <?php $guideline_checks = $process_result->guideline_checks()->get(); ?>
                                     
+                                    
                                         @foreach($guideline_checks as $guideline_check)
                                         
                                         <!--ガイドラインチェックに紐づくガイドラインの情報を取得する-->
-                                            <?php $guideline =  $guideline_check->guideline()->get(); ?>
-                                            
+                                            <?php $guideline =  $guideline_check->guideline()->first(); ?>
                                             @if($guideline->first())
-                                                <tr>
-                                                    <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
-                                                    <td>{{ $guideline->first()->guideline_id }}</td>
-                                                    <td>{!! nl2br($guideline->first()->guideline_description) !!}</td>
-                                                </tr>
+                                                
+                                                @if($guideline_check->guideline_rule_check_result === 0)
+                                                    <tr class ="bg-danger">
+                                                        <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
+                                                        <td>{{ $guideline->guideline_id }}</td>
+                                                        <td>{!! nl2br($guideline->guideline_description) !!}</td>
+                                                    </tr>
+                                                @else
+                                                    <tr>
+                                                        <td>{!! Form::select('guideline_result[]',['null' => '', 'done' => '済', 'not_yet' => '未'], $guideline_check->guideline_result, ['class' => 'form-control']) !!}</td>
+                                                        <td>{{ $guideline->guideline_id }}</td>
+                                                        <td>{!! nl2br($guideline->guideline_description) !!}</td>
+                                                    </tr>
+                                                @endif    
                                             @endif
                                         @endforeach
-                                
-                                
                             </tbody>
                         </table>
                     </div>

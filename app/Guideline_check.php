@@ -18,7 +18,6 @@ class Guideline_check extends Model
     public function guideline()
     {
         return $this->hasOne(Guideline::class, 'id','guideline_ref_id');
-        // return $this->belongsTo(Guideline::class);
     }
 }
 

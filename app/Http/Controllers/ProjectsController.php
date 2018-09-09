@@ -10,6 +10,7 @@ use App\Bp_result;
 use App\Evidence;
 use App\Guideline;
 use App\Guideline_check;
+use App\Rule;
 
 
 
@@ -173,9 +174,6 @@ class ProjectsController extends Controller
     {
         
         $process_area_info = \Config::get('const.process_area_info');
-        $man3_bp_amount = \Config::get('const.bp_amount.man3');
-        $swe1_bp_amount = \Config::get('const.bp_amount.swe1');
-        $swe6_bp_amount = \Config::get('const.bp_amount.swe6');
         $this->validate($request,[
             'prj_name' => 'required|max:191',
             'prj_purpose' => 'required|max:191',
@@ -211,7 +209,6 @@ class ProjectsController extends Controller
         $process_results = $project->process_results()->get();
         foreach($process_results as $process_result)
         {
-            // $process_results = Process_result::where('project_id', $id)->where('process_area_name', $a_process_area_info['process_area_name'])->first();
             $process_result->process_result = $request->process_result[$i];
             $process_result->process_comment = $request->process_comment[$i];
             $process_result->save();
@@ -221,17 +218,16 @@ class ProjectsController extends Controller
             //各BPのデータを更新
             $process_id = $process_result->id;
             $bp_amount = $process_area_info[$process_result->process_area_name]['bp_amount'];
-            // dd($bp_amount);
-            for ($bp_number=1; $bp_number <= $bp_amount; $bp_number++)
+                        for ($bp_number=1; $bp_number <= $bp_amount; $bp_number++)
             {
                 $bp_results = Bp_result::where('process_id', $process_id)->where('bp_number','BP' . $bp_number)->first();
-                // dd($bp_results);
                 $bp_results->bp_result = $request->bp_result[$j]; 
                 $bp_results->save();
                 $j++;
                 
                 //エビデンスの情報を更新(2つ固定)
                 $evidence = $bp_results->evidence()->get();
+                
                 foreach ($evidence as $a_evidence)
                 {
                     $a_evidence->evidence_type = $request->evidence_type[$k];
@@ -243,6 +239,24 @@ class ProjectsController extends Controller
                 
             }
             $count = false;
+            
+            //// 各プロセスに紐づくガイドラインルールをチェックし、違反の有無を確認する
+            
+            $guideline_checks = $process_result->guideline_checks()->get(); // $process_resultに紐づくガイドラインチェックの情報を取得する
+            
+            $bp_results = $process_result->bp_results()->get(); //$process_resultに紐づくbp_resultsの情報を取得する
+            foreach($guideline_checks as $guideline_check)
+            {
+                $guideline =  $guideline_check->guideline()->first(); //ガイドラインチェックに紐づくガイドラインの情報を取得する
+                
+                // ルール違反をチェックするメソッドがある場合は、ルール違反かチェックし、その結果をデータベースに登録する
+                $method_name = str_replace(".","",$guideline->guideline_id);
+                if(method_exists("App\Rule", $method_name) == true)
+                {
+                        $guideline_check->guideline_rule_check_result = Rule::$method_name($bp_results); //違反⇒false,それ以外⇒true
+                        $guideline_check->save();
+                }
+            }
            
         }
         

@@ -13,8 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         //追加
         $this->call(Man3GuidelinesTableSeeder::class);
-        $this->call(GuidelinesTableSeeder::class);
+        $this->call(SWE1GuidelinesTableSeeder::class);
+        $this->call(SWE2GuidelinesTableSeeder::class);
+        $this->call(SWE6GuidelinesTableSeeder::class);
         $this->call(Sup8GuidelinesTableSeeder::class);
-        
     }
 }

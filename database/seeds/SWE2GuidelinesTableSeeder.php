@@ -64,7 +64,7 @@ class SWE2GuidelinesTableSeeder extends Seeder
             [
                 'process_area_name' => 'SWE2',
                 'guideline_id' => 'SWE.2.RC.1',
-                'guideline_description' => "アーキテクチャ選択のためのに使用される手順が必要な関係者(requiered parties)又は能力を含んでいない場合、BP6は評定を下げるべきである。",
+                'guideline_description' => "アーキテクチャ選択のためのに使用される手順が必要な関係者(requiered parties)又は能力を含んでいない場合、指標BP6は評定を下げるべきである。",
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ],

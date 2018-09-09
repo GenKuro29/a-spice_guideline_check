@@ -31,6 +31,25 @@ class Rule
         }
     }
     
+   public static function SWE2RL8($bp_results)
+    {
+        // ソフトウェアアーキテクチャ設計の作成(BP1)が評定を下げている場合、PA1.1は全ての指標(BP2、BP3、BP4、BP5、BP6、BP7、BP8及びBP9)が影響を受けるので、評定を下げなければならない。
+        $comp1 = $bp_results->where('bp_number', 'BP1')->first()->bp_result;
+        $comp2 = $bp_results->where('bp_number', 'BP2')->first()->bp_result;
+        $comp3 = $bp_results->where('bp_number', 'BP3')->first()->bp_result;
+        $comp4 = $bp_results->where('bp_number', 'BP4')->first()->bp_result;
+        $comp5 = $bp_results->where('bp_number', 'BP5')->first()->bp_result;
+        $comp6 = $bp_results->where('bp_number', 'BP6')->first()->bp_result;
+        $comp7 = $bp_results->where('bp_number', 'BP7')->first()->bp_result;
+        $comp8 = $bp_results->where('bp_number', 'BP8')->first()->bp_result;
+        $comp9 = $bp_results->where('bp_number', 'BP9')->first()->bp_result;
+        if(($comp1 != "F" && ($comp2 == "F" or $comp3 == "F" or $comp4 == "F" or $comp5 == "F" or $comp6 == "F" or $comp7 == "F" or $comp8 == "F" or $comp9 == "F"))){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
 }
 
 ?>

@@ -1,28 +1,27 @@
 <?php
 
 return [
-    'bp_amount' => [
-        'man3' => 10,
-        'swe1' => 8,
-        'swe6' => 7,
-        'sup8' => 9,
-    ],
+    // 'bp_amount' => [
+    //     'man3' => 10,
+    //     'swe1' => 8,
+    //     'swe6' => 7,
+    //     'sup8' => 9,
+    // ],
     
-    'bp_amount2' => [10,8,7],
+
+    // 'process_area_name_lists' =>[
+    //     'man3' => 'MAN3',
+    //     'swe1' => 'SWE1',
+    //     'swe6' => 'SWE6',
+    //     'sup8' => 'SUP8',
+    // ],
     
-    'process_area_name_lists' =>[
-        'man3' => 'MAN3',
-        'swe1' => 'SWE1',
-        'swe6' => 'SWE6',
-        'sup8' => 'SUP8',
-    ],
-    
-    'guideline_amount' => [
-        'man3' => 48,
-        'swe1' => 22,
-        'swe6' => 18, 
-        'sup8' => 24,
-    ],
+    // 'guideline_amount' => [
+    //     'man3' => 48,
+    //     'swe1' => 22,
+    //     'swe6' => 18, 
+    //     'sup8' => 24,
+    // ],
     
     'process_area_info' =>[
         'MAN3' => [

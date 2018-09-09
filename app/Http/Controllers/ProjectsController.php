@@ -262,7 +262,7 @@ class ProjectsController extends Controller
            
         }
         
-        return redirect('/projects');
+        return back();
     }
 
     /**

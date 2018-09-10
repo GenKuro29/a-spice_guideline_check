@@ -220,15 +220,16 @@ class ProjectsController extends Controller
             //各BPのデータを更新
             $process_id = $process_result->id;
             $bp_amount = $process_area_info[$process_result->process_area_name]['bp_amount'];
-                        for ($bp_number=1; $bp_number <= $bp_amount; $bp_number++)
+            $bp_results = $process_result->bp_results()->get();
+            foreach ($bp_results as $bp_result)
+            
             {
-                $bp_results = Bp_result::where('process_id', $process_id)->where('bp_number','BP' . $bp_number)->first();
-                $bp_results->bp_result = $request->bp_result[$j]; 
-                $bp_results->save();
+                $bp_result->bp_result = $request->bp_result[$j];
+                $bp_result->save();
                 $j++;
                 
                 //エビデンスの情報を更新(2つ固定)
-                $evidence = $bp_results->evidence()->get();
+                $evidence = $bp_result->evidence()->get();
                 
                 foreach ($evidence as $a_evidence)
                 {

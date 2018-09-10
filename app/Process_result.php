@@ -15,7 +15,7 @@ class Process_result extends Model
     
     public function bp_results()
         {
-            return $this->hasMany(Bp_result::class, 'process_id')->orderBy('created_at', 'ASC');
+            return $this->hasMany(Bp_result::class, 'process_id')->orderBy('id', 'ASC');
         }
         
     Public function guideline_checks()

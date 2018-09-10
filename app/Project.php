@@ -19,7 +19,7 @@ class Project extends Model
     
     public function process_results()
         {
-            return $this->hasMany(Process_result::class);
+            return $this->hasMany(Process_result::class)->orderBy('id','ASC');
         }
 
 }

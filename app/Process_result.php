@@ -20,7 +20,7 @@ class Process_result extends Model
         
     Public function guideline_checks()
     {
-        return $this->hasMany(Guideline_check::class, 'process_id');
+        return $this->hasMany(Guideline_check::class, 'process_id')->orderBy('guideline_ref_id', 'ASC');
     }
 
 

@@ -47,7 +47,7 @@ return [
         'SWE4' => [
             'process_area_name' => 'SWE4',
             'bp_amount' => 7,
-            'guideline_amount' => 11,
+            'guideline_amount' => 15,
         ],
         'SWE5' => [
             'process_area_name' => 'SWE5',

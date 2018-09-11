@@ -37,7 +37,7 @@ class SWE6GuidelinesTableSeeder extends Seeder
            [
                'process_area_name' => 'SWE6',
                'guideline_id' => 'SWE.6.RL.4',
-               'guideline_description' => "テストケースの選択が側面a)及びb)をカバーしてない場合、指標BP3はFと評定してはならない",
+               'guideline_description' => "テストケースの選択が側面a)及びb)をカバーしてない場合、指標BP3はFと評定してはならない\n a)テストケースの選択は定義された戦略に基づき、実施されなければならない\n b)テストケースの選択は納入可能なアイテムの意図された用途(テストベンチ、テストトラック、公共道路での使用など)が考慮されなければならない。\n c)使用された選択基準(戦略に定義された)は文書化されなければならない。\n d)テストケースの選択は文書化されなければならない。",
                'created_at' => new DateTime(),
                'updated_at' => new DateTime(),
            ],

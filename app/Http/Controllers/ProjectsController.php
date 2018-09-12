@@ -11,6 +11,7 @@ use App\Evidence;
 use App\Guideline;
 use App\Guideline_check;
 use App\Rule;
+use Excel;
 
 
 
@@ -277,5 +278,18 @@ class ProjectsController extends Controller
         //
     }
     
+    // Process_resultsの結果をエクセルアウトさせる
+    public function excel($id)
+    {
+        // $process_results = Process_result::all();
+        $project = Project::find($id);
+        $process_results = $project->process_results()->get();
+        
+        Excel::create('process_results', function($excel) use($process_results){
+           $excel->sheet('Sheet 1', function($sheet) use($process_results){
+               $sheet->fromArray($process_results);
+           }) ;
+        })->export('xlsx');
+    }
     
 }

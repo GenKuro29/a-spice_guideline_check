@@ -13,6 +13,7 @@
                     @endforeach
                 </ul>
                 {!! link_to_route('guidelinechecks.show', $project->prj_name . "のガイドラインチェック", ['id' => $project->id], ['target' => 'a_blank']) !!}
+                {!! link_to_route('projects.excel', "Excel out", ['id' => $project->id], ['class' => "pull-right"]) !!}
                 <div class="tab-content">
                     <?php $i=true; ?>
                     @foreach($process_results as $process_result)

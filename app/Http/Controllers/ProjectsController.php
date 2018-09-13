@@ -285,11 +285,13 @@ class ProjectsController extends Controller
         
         $process_results = \DB::table('process_results')
                     ->where('process_results.project_id', '=', $id)
+                    ->orderBy('process_results.id', 'ASC')
                     ->select('process_results.process_area_name as プロセスエリア', 'process_results.process_result as PA1.1', 'process_results.process_comment')
                     ->get();
                     
         $bp_results = \DB::table('process_results')
         ->where('process_results.project_id', '=', $id)
+        ->orderBy('process_results.id', 'ASC')
         ->join('bp_results', 'process_results.id', '=', 'bp_results.process_id')
         ->join('evidence', 'bp_results.id', '=', 'evidence.bp_id')
         ->select('process_results.process_area_name as プロセスエリア', 'bp_results.bp_number', 'bp_results.bp_result', 'evidence.evidence_type', 'evidence.evidence_comment', 'evidence.evidence_document')

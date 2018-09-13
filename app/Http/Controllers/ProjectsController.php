@@ -281,14 +281,33 @@ class ProjectsController extends Controller
     // Process_resultsの結果をエクセルアウトさせる
     public function excel($id)
     {
-        // $process_results = Process_result::all();
         $project = Project::find($id);
-        $process_results = $project->process_results()->get();
         
-        Excel::create('process_results', function($excel) use($process_results){
+        $process_results = \DB::table('process_results')
+                    ->where('process_results.project_id', '=', $id)
+                    ->select('process_results.process_area_name as プロセスエリア', 'process_results.process_result as PA1.1', 'process_results.process_comment')
+                    ->get();
+                    
+        $bp_results = \DB::table('process_results')
+        ->where('process_results.project_id', '=', $id)
+        ->join('bp_results', 'process_results.id', '=', 'bp_results.process_id')
+        ->join('evidence', 'bp_results.id', '=', 'evidence.bp_id')
+        ->select('process_results.process_area_name as プロセスエリア', 'bp_results.bp_number', 'bp_results.bp_result', 'evidence.evidence_type', 'evidence.evidence_comment', 'evidence.evidence_document')
+        ->get();
+        
+        $process_results = json_decode(json_encode($process_results), true);
+        $bp_results = json_decode(json_encode($bp_results), true);
+        
+        
+        Excel::create($project->prj_name, function($excel) use($process_results, $bp_results){
            $excel->sheet('Sheet 1', function($sheet) use($process_results){
                $sheet->fromArray($process_results);
            }) ;
+           
+           $excel->sheet('Sheet 2', function($sheet) use($bp_results){
+               $sheet->fromArray($bp_results);
+           }) ;
+
         })->export('xlsx');
     }
     

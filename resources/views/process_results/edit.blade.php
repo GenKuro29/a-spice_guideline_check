@@ -54,16 +54,28 @@
                                     ?>
                                     
                                         @foreach ($bp_results as $bp_result)
+                                        
+                                        <?php
+                                            $bp_description = App\Bp_description::where('process_area_name', $process_result->process_area_name)->where('bp_number', $bp_result->bp_number)->first();
+                                            
+                                        ?>
                                             
                                             <?php
                                                 $first = true; //rowspanで初回のみ表示するコンテンツを制御する
                                                 // 対象BPに紐づくエビデンスのデータを全て取得する
                                                 $evidence = $bp_result->evidence()->get();
                                             ?>
+                                            <tr>
+                                                <td rowspan="3">{{ $bp_result->bp_number }}</td>
+                                                @if($bp_description != null)
+                                                    <td colspan="4">{!! nl2br($bp_description->bp_description) !!}</td>
+                                                @else
+                                                    <td colspan="4">(BP概要記載予定)</td>
+                                                @endif
+                                            </tr>
                                             @foreach ($evidence as $a_evidence)
                                                 <tr>
                                                     @if ($first == true)
-                                                        <td rowspan="2">{{ $bp_result->bp_number }}</td>
                                                         <td rowspan="2">{!! Form::select('bp_result[]',['null'=>'', 'F'=>'F', 'L'=>'L', 'P'=>'P', 'N'=>'N'],  $bp_result->bp_result, ['class' => 'form-control']) !!}</td>
                                                         <?php $first = false; ?>
                                                     @endif

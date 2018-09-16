@@ -127,7 +127,7 @@ return [
         'SUP9' => [
             'process_area_name' => 'SUP9',
             'bp_amount' => 9,
-            'guideline_amount' => 0,
+            'guideline_amount' => 18,
         ],
         'SUP10' => [
             'process_area_name' => 'SUP10',

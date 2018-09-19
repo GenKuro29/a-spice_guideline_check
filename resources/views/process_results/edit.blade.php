@@ -43,7 +43,7 @@
                                     <tr class="bg-success">
                                         <th class="text-center">BP</th>
                                         <th class="text-center">評定</th>
-                                        <th class="text-center">種別</th>
+                                        <th class="text-center">コメント種別</th>
                                         <th class="text-center">コメント</th>
                                         <th class="text-center">エビデンス</th>
                                     </tr>

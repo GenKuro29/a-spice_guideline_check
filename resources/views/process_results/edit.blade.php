@@ -41,11 +41,11 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="bg-success">
-                                        <th class="text-center">BP</th>
-                                        <th class="text-center">評定</th>
-                                        <th class="text-center">コメント種別</th>
-                                        <th class="text-center">コメント</th>
-                                        <th class="text-center">エビデンス</th>
+                                        <th class="text-center col-xs-1 col-sm-1 col-md-1 col-lg-1">BP</th>
+                                        <th class="text-center col-xs-1 col-sm-1 col-md-1 col-lg-1">評定</th>
+                                        <th class="text-center col-xs-1 col-sm-1 col-md-1 col-lg-1">コメント種別</th>
+                                        <th class="text-center col-xs-6 col-sm-6 col-md-6 col-lg-6">コメント</th>
+                                        <th class="text-center col-xs-3 col-sm-3 col-md-3 col-lg-3">エビデンス</th>
                                     </tr>
                                 </thead>
                                 <tbody>

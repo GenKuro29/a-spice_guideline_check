@@ -25,4 +25,4 @@
     AuthName "Restricted Access"
     Require valid-user
 
-    php_value max_input_vars 3000
+    php_value [max_input_vars] 3000

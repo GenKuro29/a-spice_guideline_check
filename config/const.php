@@ -52,7 +52,7 @@ return [
         'SYS3' => [
             'process_area_name' => 'SYS3',
             'bp_amount' => 8,
-            'guideline_amount' => 0,
+            'guideline_amount' => 12,
         ],
         'SYS4' => [
             'process_area_name' => 'SYS4',

@@ -22,7 +22,7 @@ class Man3GuidelinesTableSeeder extends Seeder
             [
                 'process_area_name' => 'MAN3',
                 'guideline_id' => 'MAN.3.RC.1',
-                'guideline_description' => "作業範囲(BP1)がプロジェクト及び製品に関して、全ての影響を受ける関係者に対処してない場合、指標BP1はLより高く票手されるべきではない",
+                'guideline_description' => "作業範囲(BP1)がプロジェクト及び製品に関して、全ての影響を受ける関係者に対処してない場合、指標BP1はLより高く評定されるべきではない",
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ],

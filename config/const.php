@@ -42,12 +42,12 @@ return [
         'SYS1' => [
             'process_area_name' => 'SYS1',
             'bp_amount' => 6,
-            'guideline_amount' => 0,
+            'guideline_amount' => 0, //現状存在せず
         ],
         'SYS2' => [
             'process_area_name' => 'SYS2',
             'bp_amount' => 8,
-            'guideline_amount' => 0,
+            'guideline_amount' => 18,
         ],
         'SYS3' => [
             'process_area_name' => 'SYS3',
@@ -57,12 +57,12 @@ return [
         'SYS4' => [
             'process_area_name' => 'SYS4',
             'bp_amount' => 9,
-            'guideline_amount' => 0,
+            'guideline_amount' => 22,
         ],
         'SYS5' => [
             'process_area_name' => 'SYS5',
             'bp_amount' => 7,
-            'guideline_amount' => 0,
+            'guideline_amount' => 18,
         ],
         'SWE1' => [
             'process_area_name' => 'SWE1',

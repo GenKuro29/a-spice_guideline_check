@@ -15,6 +15,7 @@
                     <li>{!! link_to_route('projects.create', 'プロジェクト登録') !!}</li>
                     <li>{!! link_to_route('projects.index', 'プロジェクト一覧') !!}</li>
                     <!--<li>{!! link_to_route('guidelines.create', 'ガイドライン登録(管理者用)') !!}</li>-->
+                    <li><a href="#">(工事中)参考：BP一覧</a></li>
                     <li>{!! link_to_route('guidelines.index', '参考：ガイドライン') !!}</li>
                 </ul>
             </div>

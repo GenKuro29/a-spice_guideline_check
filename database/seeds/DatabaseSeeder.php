@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         
         $this->call(MAN3BpDescriptionsTableSeeder::class);
         $this->call(ACQ4BpDescriptionsTableSeeder::class);
+        $this->call(SYS1BpDescriptionsTableSeeder::class);
         $this->call(SYS2BpDescriptionsTableSeeder::class);
         $this->call(SYS3BpDescriptionsTableSeeder::class);
         $this->call(SYS4BpDescriptionsTableSeeder::class);

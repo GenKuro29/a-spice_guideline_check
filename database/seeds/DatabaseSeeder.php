@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SYS4BpDescriptionsTableSeeder::class);
         $this->call(SYS5BpDescriptionsTableSeeder::class);
         $this->call(SWE1BpDescriptionsTableSeeder::class);
+        $this->call(SWE2BpDescriptionsTableSeeder::class);
+        $this->call(SWE3BpDescriptionsTableSeeder::class);
         $this->call(SUP10BpDescriptionsTableSeeder::class);
         
         

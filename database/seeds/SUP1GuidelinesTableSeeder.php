@@ -71,7 +71,7 @@ class SUP1GuidelinesTableSeeder extends Seeder
             [
                 'process_area_name' => 'SUP1',
                 'guideline_id' => 'SUP.1.RL.7',
-                'guideline_description' => "作業成果物の品質保証が純粋に作業成果物の存在をチェックすることのみに基づく場合、指標BP2はPよりたかっく評定してはならない。",
+                'guideline_description' => "作業成果物の品質保証が純粋に作業成果物の存在をチェックすることのみに基づく場合、指標BP2はPより高く評定してはならない。",
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ],
